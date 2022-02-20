@@ -70,3 +70,5 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 - Spatie Roles and Permissions: https://spatie.be/docs/laravel-permission/v5/introduction
 - DataTable JS Documentation: https://datatables.net/manual/index
 - Laravel Backup Documentation: https://spatie.be/docs/laravel-backup/v8/introduction
+- Spatie Roles And Permissions Documentation: https://spatie.be/docs/laravel-permission/v5/introduction
+- 
