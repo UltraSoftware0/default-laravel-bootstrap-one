@@ -66,4 +66,7 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 ## Gadgets Used 
 - Theme's Documentation: https://www.creative-tim.com/learning-lab/bootstrap/overview/material-dashboard
 - Sweet alert Documentation: https://sweetalert2.github.io/
-- Notify js Documentation: https://notifyjs.jpillora.com/
+- Notify JS Documentation: https://notifyjs.jpillora.com/
+- Spatie Roles and Permissions: https://spatie.be/docs/laravel-permission/v5/introduction
+- DataTable JS Documentation: https://datatables.net/manual/index
+- Laravel Backup Documentation: https://spatie.be/docs/laravel-backup/v8/introduction
