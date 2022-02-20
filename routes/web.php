@@ -13,9 +13,15 @@ use App\Http\Controllers\TestController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('welcome');
-})->name('welcome');
+route::get('/',function(){
+    return redirect('login');
+});
 
 Route::get('test',[TestController::class, 'test']);
+
+Route::group(['middleware' => 'auth'], function () {
+    // User needs to be authenticated to enter here.
+    Route::get('/home', function () {
+        return view('welcome');
+    })->name('home');
+});
