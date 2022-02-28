@@ -11,6 +11,9 @@ class TestController extends Controller
             'hello'=>'required'
         ]);
 
-        return redirect()->back()->with('success',"file successfully stored")->with('error',"file successfully stored")->with('info',"file successfully stored")->with('warning',"file successfully stored");
+        return redirect()->back()->with('success',"file successfully stored")
+                                 ->with('error',"file successfully stored")
+                                 ->with('info',"file successfully stored")
+                                 ->with('warning',"file successfully stored");
     }
 }

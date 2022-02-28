@@ -17,10 +17,11 @@ route::get('/',function(){
     return redirect('login');
 });
 
-Route::get('test',[TestController::class, 'test']);
 
+// User needs to be authenticated to enter here.
 Route::group(['middleware' => 'auth'], function () {
-    // User needs to be authenticated to enter here.
+    Route::get('test',[TestController::class, 'test']);
+
     Route::get('/home', function () {
         return view('welcome');
     })->name('home');
