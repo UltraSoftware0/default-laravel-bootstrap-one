@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             LanguagesSeeder::class,
             GeoSeeder::class,
+            DefaultUserSeed::class
         ]);
 
     }

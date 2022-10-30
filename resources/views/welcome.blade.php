@@ -1,6 +1,6 @@
 @extends('includes.app')
 
-@section('title',$title ?? "System Al-Khier")
+@section('title',$title ?? "Default Bootstrap")
 
 @section('css_scripts')
 

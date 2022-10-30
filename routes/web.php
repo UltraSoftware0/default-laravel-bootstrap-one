@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\RolesAndPermissions\RolesController;
+use App\Http\Controllers\TestController;
+use App\Http\Controllers\Users\UsersController;
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\TestController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,8 +23,10 @@ route::get('/',function(){
 // User needs to be authenticated to enter here.
 Route::group(['middleware' => 'auth'], function () {
     Route::get('test',[TestController::class, 'test']);
+    Route::resource('users',UsersController::class);
 
-    Route::get('/home', function () {
-        return view('welcome');
-    })->name('home');
+    Route::get('get-all-roles',[RolesController::class,'getAllRoles'])->name('get.all.roles');
+    Route::view('/home','welcome')->name('home');
+
+
 });
