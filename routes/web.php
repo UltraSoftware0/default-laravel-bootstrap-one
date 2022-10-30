@@ -15,7 +15,10 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-route::get('/',function(){
+Route::get('/login',function(){
+    return redirect('login');
+});
+Route::get('/',function(){
     return redirect('login');
 });
 
@@ -26,7 +29,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('users',UsersController::class);
 
     Route::get('get-all-roles',[RolesController::class,'getAllRoles'])->name('get.all.roles');
-    Route::view('/home','welcome')->name('home');
+    Route::view('/home','welcome')->name('index');
 
 
 });
