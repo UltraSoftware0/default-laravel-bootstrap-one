@@ -15,9 +15,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/login',function(){
-    return redirect('login');
-});
+
 Route::get('/',function(){
     return redirect('login');
 });
