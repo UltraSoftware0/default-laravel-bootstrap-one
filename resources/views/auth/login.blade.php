@@ -60,7 +60,9 @@
                                     </div>
                                 </div>
                             </div>
-                                </div>
+                            <div class="card-body">
+                                <x-form-errors-display />
+
                                 <form role="form" action="{{ route('login') }}" method="POST" class="text-start">
                                     @csrf
                                     <div class="input-group input-group-outline my-3">
