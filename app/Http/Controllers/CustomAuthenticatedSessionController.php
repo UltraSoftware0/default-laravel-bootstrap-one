@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Contracts\Auth\StatefulGuard;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Pipeline;
 use Laravel\Fortify\Actions\AttemptToAuthenticate;
@@ -12,19 +13,23 @@ use Laravel\Fortify\Contracts\LoginResponse;
 use Laravel\Fortify\Features;
 use Laravel\Fortify\Fortify;
 use Laravel\Fortify\Http\Controllers\AuthenticatedSessionController;
+use Lunaweb\RecaptchaV3\RecaptchaV3;
 
 class CustomAuthenticatedSessionController extends AuthenticatedSessionController
 {
+
     public function store(Request $request)
     {
         $request->validate(
             [
                 Fortify::username() => 'required|string',
                 'password' => 'required|string',
+                'g-recaptcha-response' => 'required|recaptchav3:register,0.5'
             ],
             [
                 Fortify::username().'.required' => 'The email is required!',
-                'password.required' => 'The password is required!'
+                'password.required' => 'The password is required!',
+                'g-recaptcha-response.required' => 'Recaptcha invalid !'
             ]
         );
 
