@@ -9,6 +9,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 class UsersController extends Controller
 {
+    private User $user;
+    public function __construct(User $user)
+    {
+        $this->user = $user;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -16,7 +22,7 @@ class UsersController extends Controller
      */
     public function index()
     {
-        $users = User::with('roles')->whereNot('id',auth()->user()->id)->get();
+        $users = $this->user->with('roles')->whereNot('id',auth()->user()->id)->get();
         return view('users.index')->with(['users' => $users]);
     }
 
@@ -41,21 +47,26 @@ class UsersController extends Controller
     {
         DB::beginTransaction();
         try {
+            $magePath = null;
+            if($request->has('image')){
+                $magePath = uploadFile($request->file('image'),$this->user->imagesPath,'public');
+            }
 
-            $user = User::query()->create([
+            $user = $this->user->query()->create([
                 'name' => $request->name,
                 'email' => $request->email,
                 'password' => $request->password,
                 'is_active' => $request->has('is_active') ? 1 : 0,
-                'image' => null
+                'image' => $magePath
             ]);
+
             $user->assignRole($request->role);
 
             DB::commit();
             return back()->with(['success' => 'The user was added successfully!']);
         }catch (\Exception $exception){
             DB::rollBack();
-            throw new \Exception();
+            throw new \Exception($exception->getMessage());
         }
     }
 
@@ -102,5 +113,20 @@ class UsersController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function toggleStatus(User $user){
+        $user->is_active = !$user->is_active;
+        if($user->save()){
+            return response()->json([
+                'message' => 'the status was updated successfully!',
+                'user' => $user
+            ]);
+        }
+        return response()->json([
+            'message' => 'the status was not updated successfully!',
+            'user' => $user
+        ],500);
+
     }
 }

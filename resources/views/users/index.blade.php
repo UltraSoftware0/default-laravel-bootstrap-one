@@ -49,11 +49,11 @@
 
                         <tbody>
                         @foreach($users as $user)
-                            <tr>
+                            <tr data-id="{{$user->id}}">
                                 <td>
                                     <div class="d-flex px-2 py-1">
                                         <div>
-                                            <img src="https://demos.creative-tim.com/test/material-dashboard-pro/assets/img/team-1.jpg" class="avatar avatar-sm me-3">
+                                            <img src="{{$user->image}}" class="avatar avatar-sm me-3">
                                         </div>
                                         <div class="d-flex flex-column justify-content-center">
                                             <h6 class="mb-0 text-xs">{{$user->name}}</h6>
@@ -65,8 +65,7 @@
                                     <p class="text-xs font-weight-bold mb-0">{{$user->role_name}}</p>
                                 </td>
                                 <td class="align-middle text-center text-sm">
-                                    <a title="Inactivate?" href="#"> <span class="badge bg-gradient-faded-success">Active</span>
-                                    </a>
+                                    <a class="toggle-status" title="Deactivate?" href="#"> <span class="badge bg-gradient-faded-success">Active</span> </a>
                                 </td>
                                 <td class="align-middle text-center">
                                     <span class="text-secondary text-xs font-weight-normal">{{$user->created_at->toFormattedDateString()}}</span>

@@ -8,7 +8,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form id="users-modal-form">
+            <form id="users-modal-form" enctype="multipart/form-data">
 
                 <div class="modal-body">
                     @csrf
@@ -63,8 +63,14 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="input-group input-group-outline my-3">
-                                <input type="file" class="form-control">
+                                <input name="image" onchange="readURL(this);" type="file" class="form-control">
                             </div>
+                            <button onclick="removeImage(event)" class="btn bg-gradient-dark">Remove Image</button>
+
+
+                        </div>
+                        <div class="col-md-6">
+                            <img id="user-img" src="" class="img-thumbnail rounded mx-auto d-block h-100" alt="Image of user">
                         </div>
                     </div>
                 </div>

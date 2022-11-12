@@ -15,6 +15,7 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable, HasRoles;
 
+    public string $imagesPath = 'Users/ProfileImages';
     /**
      * The attributes that are mass assignable.
      *
@@ -51,6 +52,13 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function image(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($value) => $value ? asset($value) : asset(config('defaults.default_image')),
+        );
+    }
 
     public function getRoleNameAttribute(){
         return count($this->roles) > 0 ? ucfirst($this->roles[0]->name) : 'NON';
