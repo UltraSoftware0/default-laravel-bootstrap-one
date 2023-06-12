@@ -69,7 +69,7 @@
                                     </a>
                                 </td>
                                 <td class="align-middle text-center">
-                                    <span class="text-secondary text-xs font-weight-normal">{{$user->created_at->toFormattedDateString()}}</span>
+                                    <span class="text-secondary text-xs font-weight-normal">{{$user->created_at?->toFormattedDateString() ?? 'N/A'}}</span>
                                 </td>
                                 <td class="align-middle">
                                     <a href="javascript:;" class="text-warning font-weight-normal text-xs"
